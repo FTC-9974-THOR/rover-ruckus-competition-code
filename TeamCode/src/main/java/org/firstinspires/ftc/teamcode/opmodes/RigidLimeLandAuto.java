@@ -40,7 +40,11 @@ public class RigidLimeLandAuto extends LinearOpMode {
         lift.move(0);
         rb.setModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rb.setModes(DcMotor.RunMode.RUN_TO_POSITION);
-        rb.setTargets(1120, 1120);
+        rb.setTargets(3000, -3000);
         rb.drive(0.9, 1);
+
+        while ((rb.isLeftBusy() || rb.isRightBusy()) && isStopRequested()) {
+            idle();
+        }
     }
 }
